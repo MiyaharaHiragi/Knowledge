@@ -1,270 +1,139 @@
-@use "../../styles/variables.scss" as *;
-
-@media all and ($mobile) {
-  .page > #quartz-body {
-    // Shift page position when toggling Explorer on mobile.
-    & > :not(.sidebar.left:has(.explorer)) {
-      transition: transform 300ms ease-in-out;
-    }
-    &.lock-scroll > :not(.sidebar.left:has(.explorer)) {
-      transform: translateX(100dvw);
-      transition: transform 300ms ease-in-out;
-    }
-
-    // Sticky top bar (stays in place when scrolling down on mobile).
-    .sidebar.left:has(.explorer) {
-      box-sizing: border-box;
-      position: sticky;
-      background-color: var(--light);
-      padding: 1rem 0 1rem 0;
-      margin: 0;
-    }
-
-    .hide-until-loaded ~ .explorer-content {
-      display: none;
-    }
-  }
-}
-
 .explorer {
-  display: flex;
-  flex-direction: column;
-  overflow-y: hidden;
-
-  min-height: 1.2rem;
-  flex: 0 1 auto;
-  &.collapsed {
-    flex: 0 1 1.2rem;
-    & .fold {
-      transform: rotateZ(-90deg);
-    }
-  }
-
-  & .fold {
-    margin-left: 0.5rem;
-    transition: transform 0.3s ease;
-    opacity: 0.8;
-  }
-
-  @media all and ($mobile) {
-    order: -1;
-    height: initial;
-    overflow: hidden;
-    flex-shrink: 0;
-    align-self: flex-start;
-    margin-top: auto;
-    margin-bottom: auto;
-  }
-
-  button.mobile-explorer {
-    display: none;
-  }
-
-  button.desktop-explorer {
-    display: flex;
-  }
-
-  @media all and ($mobile) {
-    button.mobile-explorer {
-      display: flex;
-    }
-
-    button.desktop-explorer {
-      display: none;
-    }
-  }
-
-  &.desktop-only {
-    @media all and not ($mobile) {
-      display: flex;
-    }
-  }
-
-  svg {
-    pointer-events: all;
-    transition: transform 0.35s ease;
-
-    & > polyline {
-      pointer-events: none;
-    }
-  }
-}
-
-button.mobile-explorer,
-button.desktop-explorer {
-  background-color: transparent;
+  position: relative;
+  display: inline-block;
+  background: none;
   border: none;
-  text-align: left;
-  cursor: pointer;
   padding: 0;
-  color: var(--dark);
-  display: flex;
-  align-items: center;
+  margin: 0;
 
-  & h2 {
-    font-size: 1rem;
-    display: inline-block;
-    margin: 0;
-  }
-}
-
-.explorer-content {
-  list-style: none;
-  overflow: hidden;
-  overflow-y: auto;
-  margin-top: 0.5rem;
-
-  & ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    overscroll-behavior: contain;
-
-    & li > a {
-      color: var(--dark);
-      opacity: 0.75;
-      pointer-events: all;
-
-      &.active {
-        opacity: 1;
-        color: var(--tertiary);
-      }
-    }
-  }
-
-  .folder-outer {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.3s ease-in-out;
-  }
-
-  .folder-outer.open {
-    grid-template-rows: 1fr;
-  }
-
-  .folder-outer > ul {
-    overflow: hidden;
-    margin-left: 6px;
-    padding-left: 0.8rem;
-    border-left: 1px solid var(--lightgray);
-  }
-}
-
-.folder-container {
-  flex-direction: row;
-  display: flex;
-  align-items: center;
-  user-select: none;
-
-  & div > a {
-    color: var(--secondary);
-    font-family: var(--headerFont);
-    font-size: 0.95rem;
-    font-weight: $semiBoldWeight;
-    line-height: 1.5rem;
-    display: inline-block;
-  }
-
-  & div > a:hover {
-    color: var(--tertiary);
-  }
-
-  & div > button {
-    color: var(--dark);
-    background-color: transparent;
-    border: none;
-    text-align: left;
+  /* === Explorer 主標題 === */
+  .explorer-toggle {
+    background: var(--light);
+    border-radius: 0.6rem;
+    padding: 0.6rem 1rem;
+    font-size: 18pt;
+    font-weight: 600;
     cursor: pointer;
-    padding-left: 0;
-    padding-right: 0;
     display: flex;
     align-items: center;
-    font-family: var(--headerFont);
-
-    & span {
-      font-size: 0.95rem;
-      display: inline-block;
-      color: var(--secondary);
-      font-weight: $semiBoldWeight;
-      margin: 0;
-      line-height: 1.5rem;
-      pointer-events: none;
-    }
+    justify-content: space-between;
+    color: var(--dark);
+    transition: background 0.2s ease, color 0.2s ease;
   }
-}
 
-.folder-icon {
-  margin-right: 5px;
-  color: var(--secondary);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  backface-visibility: visible;
-  flex-shrink: 0;
-}
+  .explorer-toggle:hover {
+    background: var(--highlight);
+    color: white;
+  }
 
-li:has(> .folder-outer:not(.open)) > .folder-container > svg {
-  transform: rotate(-90deg);
-}
+  .explorer-arrow {
+    width: 16px;
+    height: 16px;
+    transform: rotate(90deg);
+    transition: transform 0.25s ease;
+  }
 
-.folder-icon:hover {
-  color: var(--tertiary);
-}
+  &.open .explorer-arrow {
+    transform: rotate(180deg);
+  }
 
-.explorer {
-  @media all and ($mobile) {
-    &.collapsed {
-      flex: 0 0 34px;
+  /* === Explorer 主選單（漂浮） === */
+  .explorer-navbar {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: var(--light);
+    border-radius: 0.8rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    padding: 0.6rem 0;
+    z-index: 1000;
+    font-size: 14pt;
+    animation: fadeIn 0.15s ease-out;
+  }
 
-      & > .explorer-content {
-        transform: translateX(-100vw);
-        visibility: hidden;
-      }
+  &.open > .explorer-navbar {
+    display: block;
+  }
+
+  .folder-title{    
+    font-size: 16pt;
+  }
+
+  /* === 第一層選單 === */
+  .dropdown {
+    position: relative;
+    list-style: none;
+    font-size: 14pt;
+
+    .folder-button {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--dark);
+      cursor: pointer;
+      transition: background 0.2s ease;
     }
 
-    &:not(.collapsed) {
-      flex: 0 0 34px;
-
-      & > .explorer-content {
-        transform: translateX(0);
-        visibility: visible;
-      }
+    .folder-button:hover {
+      background: var(--highlight);
+      color: white;
     }
 
-    .explorer-content {
-      box-sizing: border-box;
-      z-index: 100;
+    .arrow-icon {
+      width: 14px;
+      height: 14px;
+      transform: rotate(90deg);
+      transition: transform 0.25s ease;
+    }
+
+    &.open > .folder-button > .arrow-icon {
+      transform: rotate(180deg);
+    }
+
+    /* === 第二層起：漂浮右側 === */
+    .dropdown-menu {
+      list-style: none;
+      padding-left: 0;
+      font-size: 14pt;
+      margin: 0;
+      display: none;
       position: absolute;
       top: 0;
-      left: 0;
-      margin-top: 0;
-      background-color: var(--light);
-      max-width: 100vw;
-      width: 100vw;
-      transform: translateX(-100vw);
-      transition:
-        transform 200ms ease,
-        visibility 200ms ease;
-      overflow: hidden;
-      padding: 4rem 0 2rem 0;
-      height: 100dvh;
-      max-height: 100dvh;
-      visibility: hidden;
+      left: 100%;
+      min-width: 180px;
+      background: var(--light);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      z-index: 999;
+      animation: fadeIn 0.15s ease-out;
     }
 
-    .mobile-explorer {
-      margin: 0;
-      padding: 5px;
-      z-index: 101;
+    &.open > .dropdown-menu,
+    &:hover > .dropdown-menu {
+      display: block;
+    }
 
-      .lucide-menu {
-        stroke: var(--darkgray);
-      }
+    a {
+      display: block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 0.4rem;
+    }
+
+    a:hover {
+      background: var(--highlight);
+      color: white;
     }
   }
-}
 
-.mobile-no-scroll {
-  @media all and ($mobile) {
-    overscroll-behavior: none;
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }

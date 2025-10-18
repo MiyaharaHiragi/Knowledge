@@ -9,13 +9,14 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin: 2rem 0;
-  gap: 1.5rem;
+  margin: 0rem 2rem 0 2rem;
 }
 
-header h1 {
-  margin: 0;
-  flex: auto;
+.flex-component {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap:5rem;
 }
 `
 
