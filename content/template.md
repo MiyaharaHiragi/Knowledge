@@ -73,3 +73,4 @@ def hello_quartz():
     print(f"歡迎來到 {site_name}！")
 
 hello_quartz()
+```
