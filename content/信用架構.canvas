@@ -1,0 +1,39 @@
+{
+	"nodes":[
+		{"id":"ea439b03a95e7eef","type":"text","text":"個人","x":-60,"y":120,"width":80,"height":60},
+		{"id":"b63a49a6b53efd3a","type":"text","text":"業務","x":-60,"y":-30,"width":80,"height":60},
+		{"id":"4b41986e17d56d3b","type":"text","text":"銀行","x":113,"y":-90,"width":87,"height":60},
+		{"id":"7d3b53016fcf5dec","type":"text","text":"信用狀","x":280,"y":-141,"width":106,"height":51},
+		{"id":"b62a0563f33f9d48","type":"text","text":"  信用貸款\n（無擔保）","x":280,"y":-60,"width":144,"height":75},
+		{"id":"eb1c721006bb0b8d","type":"text","text":"證券","x":113,"y":30,"width":87,"height":66},
+		{"id":"24c7deb92c1e7b8e","type":"text","text":"證券化","x":280,"y":30,"width":106,"height":66},
+		{"id":"f3ee54a67a98af46","type":"text","text":"信用評等","x":424,"y":30,"width":116,"height":66},
+		{"id":"6331a38b2d138285","type":"text","text":"不動產","x":280,"y":180,"width":50,"height":92},
+		{"id":"c6bf35cb6bb0d8e0","type":"text","text":"金融資產","x":336,"y":180,"width":50,"height":120},
+		{"id":"1999e2d0681c532e","type":"text","text":"信用評等","x":113,"y":-320,"width":120,"height":60},
+		{"id":"a26ab801874455ad","type":"text","text":"政府","x":305,"y":-400,"width":250,"height":60},
+		{"id":"c56e205c60f67d48","type":"text","text":"企業","x":305,"y":-320,"width":250,"height":60},
+		{"id":"2844becdd4d3b051","type":"text","text":"金融企業","x":305,"y":-245,"width":250,"height":60},
+		{"id":"56c5667a6d4cc1a1","type":"text","text":"信用評分","x":65,"y":120,"width":135,"height":60},
+		{"id":"f39fe90aa5e43f19","type":"text","text":"信用","x":-240,"y":-30,"width":80,"height":60},
+		{"id":"5314dc1b7ce72769","type":"text","text":"組織","x":-60,"y":-320,"width":80,"height":60}
+	],
+	"edges":[
+		{"id":"df35b00457de3db4","fromNode":"f39fe90aa5e43f19","fromSide":"right","toNode":"b63a49a6b53efd3a","toSide":"left"},
+		{"id":"6ab765683074176f","fromNode":"f39fe90aa5e43f19","fromSide":"right","toNode":"5314dc1b7ce72769","toSide":"left"},
+		{"id":"cb3665c3e650b45e","fromNode":"f39fe90aa5e43f19","fromSide":"right","toNode":"ea439b03a95e7eef","toSide":"left"},
+		{"id":"d56d74bd89b87d1f","fromNode":"5314dc1b7ce72769","fromSide":"right","toNode":"1999e2d0681c532e","toSide":"left"},
+		{"id":"fadd9f5e3230447a","fromNode":"1999e2d0681c532e","fromSide":"right","toNode":"a26ab801874455ad","toSide":"left"},
+		{"id":"556c84cb04705161","fromNode":"1999e2d0681c532e","fromSide":"right","toNode":"2844becdd4d3b051","toSide":"left"},
+		{"id":"f0bc88b54fc778db","fromNode":"1999e2d0681c532e","fromSide":"right","toNode":"c56e205c60f67d48","toSide":"left"},
+		{"id":"07478e8bb9ee2f51","fromNode":"b63a49a6b53efd3a","fromSide":"right","toNode":"4b41986e17d56d3b","toSide":"left"},
+		{"id":"4da5de08015eb19d","fromNode":"b63a49a6b53efd3a","fromSide":"right","toNode":"eb1c721006bb0b8d","toSide":"left"},
+		{"id":"fb5e87de8fcdaf7b","fromNode":"eb1c721006bb0b8d","fromSide":"right","toNode":"24c7deb92c1e7b8e","toSide":"left"},
+		{"id":"cb6005f564099933","fromNode":"24c7deb92c1e7b8e","fromSide":"right","toNode":"f3ee54a67a98af46","toSide":"left"},
+		{"id":"82c9d3b71c87683c","fromNode":"4b41986e17d56d3b","fromSide":"right","toNode":"7d3b53016fcf5dec","toSide":"left"},
+		{"id":"0fe493a25e013177","fromNode":"4b41986e17d56d3b","fromSide":"right","toNode":"b62a0563f33f9d48","toSide":"left"},
+		{"id":"3c14bbf409276cb9","fromNode":"24c7deb92c1e7b8e","fromSide":"bottom","toNode":"6331a38b2d138285","toSide":"top"},
+		{"id":"3f1766fb8e52f096","fromNode":"24c7deb92c1e7b8e","fromSide":"bottom","toNode":"c6bf35cb6bb0d8e0","toSide":"top"},
+		{"id":"e37983e2ed0e57a2","fromNode":"ea439b03a95e7eef","fromSide":"right","toNode":"56c5667a6d4cc1a1","toSide":"left"}
+	]
+}
